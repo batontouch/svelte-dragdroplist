@@ -3,6 +3,8 @@
   // 참고자료 : https://github.com/jwlarocque/svelte-dragdroplist/blob/master/DragDropList.svelte
 
   import { flip } from "svelte/animate";
+  import { createEventDispatcher } from "svelte";
+  const dispatcher = createEventDispatcher();
 
   export let data = [];
   export let removesItems = false;
@@ -72,6 +74,7 @@
 
   function removeDatum(index) {
     data = [...data.slice(0, index), ...data.slice(index + 1)];
+    dispatcher("remove", index);
   }
 </script>
 
